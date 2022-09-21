@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Leaflet Control Geocoder | OS Places API</title>
-    <link rel="stylesheet" href="https://labs.os.uk/public/os-api-branding/v0.2.0/os-api-branding.css" />
+    <link rel="stylesheet" href="https://labs.os.uk/public/os-api-branding/v0.3.1/os-api-branding.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <style>
@@ -31,7 +31,7 @@
 
 <div id="map"></div>
 
-<script src="https://labs.os.uk/public/os-api-branding/v0.2.0/os-api-branding.js"></script>
+<script src="https://labs.os.uk/public/os-api-branding/v0.3.1/os-api-branding.js"></script>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="../Control.Geocoder.js"></script>
 <script>
@@ -72,21 +72,30 @@
 
     // Click event for reverse geocode.
     map.on('click', function(e) {
-        control.options.geocoder.reverse(e.latlng, map.options.crs.scale(map.getZoom()), function(results) {
-            var result = results[0];
-            if(! result ) {
-                result = { center: e.latlng, name: 'Nothing found' };
-            }
-            displayMarkGeocode(result);
-        })
+        ctrlReverseGeocode(e.latlng);
     });
 
-    function displayMarkGeocode(props) {
+    function ctrlReverseGeocode(pos) {
+        control.options.geocoder.reverse(pos, map.options.crs.scale(map.getZoom()), function(results) {
+            var result = results[0];
+            if(! result ) {
+                result = { center: pos, name: 'Nothing found' };
+            }
+            displayMarkGeocode(result);
+        });
+    }
+
+    function displayMarkGeocode(res) {
+        console.log(res);
         if( marker ) {
-            marker.setLatLng(props.center).setPopupContent(props.html || props.name).openPopup();
+            marker.setLatLng(res.center).setPopupContent(res.html || res.name).openPopup();
         }
         else {
-            marker = L.marker(props.center).bindPopup(props.html || props.name).addTo(map).openPopup();
+            marker = L.marker(res.center, { draggable: 'true' }).bindPopup(res.html || res.name).addTo(map).openPopup();
+            // Marker dragend event for reverse geocode.
+            marker.on('dragend', function(e) {
+                ctrlReverseGeocode(e.target.getLatLng());
+            });
         }
     }
 

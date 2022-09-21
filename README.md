@@ -33,7 +33,7 @@ For example, to query the closest Named Road with 500m of the clicked map point 
 
 ### Demo
 
-https://labs.os.uk/public/os-api-resources/leaflet-control-geocoder/examples/os-names-api.html
+https://labs.os.uk/public/os-api-resources/leaflet-control-geocoder/os-names-api.html
 
 ## OS Places API
 
@@ -66,4 +66,4 @@ For example, to query the `postcode` resource for both DPA and LPI addresses whe
 
 ### Demo
 
-https://labs.os.uk/public/os-api-resources/leaflet-control-geocoder/examples/os-places-api.html
+https://labs.os.uk/public/os-api-resources/leaflet-control-geocoder/os-places-api.html
