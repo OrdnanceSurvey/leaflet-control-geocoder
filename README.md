@@ -4,6 +4,22 @@ This [Leaflet JS](https://leafletjs.com/) plugin is an extension of Per Liedman'
 
 It provides both forward and reverse geocoding (performed on map click location) capabilities using the [OS Names API](https://osdatahub.os.uk/docs/names/overview) and [OS Places API](https://osdatahub.os.uk/docs/places/overview).
 
+## Installation
+
+The latest CDN versions can be accessed via:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OrdnanceSurvey/leaflet-control-geocoder@latest/Control.Geocoder.css" />
+<script src="https://cdn.jsdelivr.net/gh/OrdnanceSurvey/leaflet-control-geocoder@latest/Control.Geocoder.js"></script>
+```
+
+Hosted versions can also be found at:
+
+```html
+<link rel="stylesheet" href="https://labs.os.uk/public/assets/lib/Control.Geocoder.css" />
+<script src="https://labs.os.uk/public/assets/lib/Control.Geocoder.js"></script>
+```
+
 ## OS Names API
 
 The OS Names API is a RESTful API, which returns queries to the service in either XML or JSON. The service offers two resources: `find` and `nearest`.
