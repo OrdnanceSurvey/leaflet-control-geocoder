@@ -82,6 +82,7 @@ For example, to query the `postcode` resource for both DPA and LPI addresses whe
 
 ### Demo
 
-NOTE: This example requires a valid API key. If you have not already done so, [please sign up to the Data Hub and acquire a project API key](https://osdatahub.os.uk/) before continuing.
+> [!IMPORTANT]
+>  This example requires a valid API key. If you have not already done so, [please sign up to the Data Hub and acquire a project API key](https://osdatahub.os.uk/) before continuing.
 
 https://labs.os.uk/public/os-api-resources/code-playground/leaflet-control-geocoder/os-places-api
