@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Leaflet Control Geocoder | OS Places API</title>
-    <link rel="stylesheet" href="https://labs.os.uk/public/os-api-branding/v0.3.1/os-api-branding.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OrdnanceSurvey/os-api-branding@0.3.1/os-api-branding.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OrdnanceSurvey/leaflet-control-geocoder@latest/Control.Geocoder.min.css" />
     <style>
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -31,53 +31,62 @@
 
 <div id="map"></div>
 
-<script src="https://labs.os.uk/public/os-api-branding/v0.3.1/os-api-branding.js"></script>
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-<script src="../Control.Geocoder.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/OrdnanceSurvey/os-api-branding@0.3.1/os-api-branding.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/OrdnanceSurvey/leaflet-control-geocoder@latest/Control.Geocoder.min.js"></script>
 <script>
 
-    var apiKey = 'INSERT_API_KEY_HERE';
+    const apiKey = 'INSERT_API_KEY_HERE';
 
     // Initialize the map.
-    var mapOptions = {
+    const mapOptions = {
         minZoom: 7,
         maxZoom: 18,
+        center: [ 52.567, -1.485 ],
+        zoom: 8,
         maxBounds: [
             [ 49.528423, -10.76418 ],
             [ 61.331151, 1.9134116 ]
         ],
-        center: [ 52.567, -1.485 ],
-        zoom: 8,
         attributionControl: false
     };
 
-    var map = L.map('map', mapOptions);
+    const map = L.map('map', mapOptions);
 
     // Load and display OS Maps API XZY tile layer on the map.
-    var basemap = L.tileLayer('https://api.os.uk/maps/raster/v1/zxy/Outdoor_3857/{z}/{x}/{y}.png?key=' + apiKey).addTo(map);
+    const basemap = L.tileLayer('https://api.os.uk/maps/raster/v1/zxy/Outdoor_3857/{z}/{x}/{y}.png?key=' + apiKey, {
+        maxZoom: 20
+    }).addTo(map);
+
+    // Add marker to the map.
+    const marker = L.marker([ 0, 0 ], { draggable: 'true' }).bindPopup().addTo(map);
 
     // Add geocoder control to the map.
-    var control = L.Control.geocoder({
+    const control = L.Control.geocoder({
         geocoder: new L.Control.Geocoder.osPlacesAPI(apiKey),
         defaultMarkGeocode: false
     })
     .on('markgeocode', function(e) {
-        var geocode = e.geocode;
+        const geocode = e.geocode;
         displayMarkGeocode(geocode);
         map.fitBounds(geocode.bbox);
     })
     .addTo(map);
 
-    var marker;
-
-    // Click event for reverse geocode.
+    // Map click event for reverse geocode.
     map.on('click', function(e) {
         ctrlReverseGeocode(e.latlng);
     });
 
+    // Marker dragend event for reverse geocode.
+    marker.on('dragend', function(e) {
+        ctrlReverseGeocode(e.target.getLatLng());
+    });
+
+    // Reverse geocode function.
     function ctrlReverseGeocode(pos) {
         control.options.geocoder.reverse(pos, map.options.crs.scale(map.getZoom()), function(results) {
-            var result = results[0];
+            let result = results[0];
             if(! result ) {
                 result = { center: pos, name: 'Nothing found' };
             }
@@ -85,18 +94,10 @@
         });
     }
 
+    // Display marker geocode popup information.
     function displayMarkGeocode(res) {
         console.log(res);
-        if( marker ) {
-            marker.setLatLng(res.center).setPopupContent(res.html || res.name).openPopup();
-        }
-        else {
-            marker = L.marker(res.center, { draggable: 'true' }).bindPopup(res.html || res.name).addTo(map).openPopup();
-            // Marker dragend event for reverse geocode.
-            marker.on('dragend', function(e) {
-                ctrlReverseGeocode(e.target.getLatLng());
-            });
-        }
+        marker.setLatLng(res.center).setPopupContent(res.html || res.name).openPopup();
     }
 
 </script>

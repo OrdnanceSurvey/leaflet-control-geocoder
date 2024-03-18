@@ -1579,7 +1579,7 @@ this.L.Control.Geocoder = (function (L) {
     // what3words: what3words,
     OSNamesAPI: OSNamesAPI,
     osNamesAPI: osNamesAPI,
-    osPlacesAPI: OSPlacesAPI,
+    OSPlacesAPI: OSPlacesAPI,
     osPlacesAPI: osPlacesAPI
   });
 
