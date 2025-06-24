@@ -6,18 +6,18 @@ It provides both forward and reverse geocoding (performed on map click location)
 
 ## Installation
 
-The latest CDN versions can be accessed via:
+Download the [latest release](https://github.com/OrdnanceSurvey/leaflet-control-geocoder/releases) and include the following tags in the header section of your HTML document:
+
+```
+<link rel="stylesheet" href="Control.Geocoder.css" />
+<script src="Control.Geocoder.js"></script>
+```
+
+Alternatively the latest CDN versions can be accessed via:
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/OrdnanceSurvey/leaflet-control-geocoder@latest/Control.Geocoder.css" />
 <script src="https://cdn.jsdelivr.net/gh/OrdnanceSurvey/leaflet-control-geocoder@latest/Control.Geocoder.js"></script>
-```
-
-Hosted versions can also be found at:
-
-```html
-<link rel="stylesheet" href="https://labs.os.uk/public/assets/lib/Control.Geocoder.css" />
-<script src="https://labs.os.uk/public/assets/lib/Control.Geocoder.js"></script>
 ```
 
 ## OS Names API
