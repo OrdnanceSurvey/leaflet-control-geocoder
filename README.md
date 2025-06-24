@@ -8,7 +8,7 @@ It provides both forward and reverse geocoding (performed on map click location)
 
 Download the [latest release](https://github.com/OrdnanceSurvey/leaflet-control-geocoder/releases) and include the following tags in the header section of your HTML document:
 
-```
+```html
 <link rel="stylesheet" href="Control.Geocoder.css" />
 <script src="Control.Geocoder.js"></script>
 ```
