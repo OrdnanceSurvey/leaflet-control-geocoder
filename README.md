@@ -1,3 +1,12 @@
+> [!IMPORTANT]
+> This repository is no longer actively maintained.
+>
+> The preferred methodolgy is to utilise leaflet-control-geocoder (v3+) where the plugin can easily be extended to support other providers.
+>
+> Recent versions of the plugin have moved to an **IGeocoder** interface that is async/Promise-based.
+>
+> The linked demos have been updated to reflect the modern control contract (i.e. where the geocoder is an **IGeocoder** passed via the control options).
+
 # Leaflet Control Geocoder for OS Names API and OS Places API
 
 This [Leaflet JS](https://leafletjs.com/) plugin is an extension of Per Liedman's [Leaflet Control Geocoder](https://github.com/perliedman/leaflet-control-geocoder/tree/1.13.0#api).
@@ -49,7 +58,7 @@ For example, to query the closest Named Road with 500m of the clicked map point 
 
 ### Demo
 
-https://labs.os.uk/public/os-api-resources/code-playground/leaflet-control-geocoder/os-names-api
+- https://labs.os.uk/public/os-api-resources/code-playground/leaflet-control-geocoder/os-names-api
 
 ## OS Places API
 
@@ -82,7 +91,6 @@ For example, to query the `postcode` resource for both DPA and LPI addresses whe
 
 ### Demo
 
-> [!IMPORTANT]
->  This example requires a valid API key. If you have not already done so, [please sign up to the Data Hub and acquire a project API key](https://osdatahub.os.uk/) before continuing.
+NOTE: This example requires a valid API key. If you have not already done so, [please sign up to the Data Hub and acquire a project API key](https://osdatahub.os.uk/) before continuing.
 
-https://labs.os.uk/public/os-api-resources/code-playground/leaflet-control-geocoder/os-places-api
+- https://labs.os.uk/public/os-api-resources/code-playground/leaflet-control-geocoder/os-places-api
