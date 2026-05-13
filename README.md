@@ -1,7 +1,7 @@
 > [!IMPORTANT]
 > This repository is no longer actively maintained.
 >
-> The preferred methodolgy is to utilise leaflet-control-geocoder (v3+) where the plugin can easily be extended to support other providers.
+> The preferred methodology is to utilise leaflet-control-geocoder (v3+) where the plugin can easily be extended to support other providers.
 >
 > Recent versions of the plugin have moved to an **IGeocoder** interface that is async/Promise-based.
 >
